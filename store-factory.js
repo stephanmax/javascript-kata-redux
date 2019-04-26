@@ -53,20 +53,23 @@ const validateAction = action => {
   }
 }
 
-const createStore = () => {
+const createStore = (middleware) => {
   let state = {
     nextNoteId: 0,
     notes: {}
   }
   const subscribers = []
 
+  const dispatch = (action) => {
+    validateAction(action)
+    state = reducer(state, action),
+    subscribers.forEach(handler => handler())
+  }
+  const getState = () => state
+
   const store = {
-    dispatch: (action) => {
-      validateAction(action)
-      state = reducer(state, action),
-      subscribers.forEach(handler => handler())
-    },
-    getState: () => state,
+    dispatch,
+    getState,
     subscribe: handler => {
       subscribers.push(handler);
       return () => {
@@ -74,6 +77,12 @@ const createStore = () => {
         subscribers.splice(index, 1)
       }
     }
+  }
+
+  if (middleware) {
+    store.dispatch = middleware({
+      getState
+    })(dispatch)
   }
   
   return store

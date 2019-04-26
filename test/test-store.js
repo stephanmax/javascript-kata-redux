@@ -217,3 +217,25 @@ describe('Actions', () => {
   })
 
 })
+
+describe('Middleware', () => {
+
+  beforeEach(() => {
+    this.innerDispatch = sinon.fake()
+    this.store = storeFactory.createStore(() => () => this.innerDispatch)
+  })
+
+  it('is called on dispatch', () => {
+    this.store.dispatch({
+      type: actions.CREATE_NOTE
+    })
+    this.store.dispatch({
+      type: actions.UPDATE_NOTE,
+      id: 0,
+      content: 'Update'
+    })
+
+    expect(this.innerDispatch).to.have.been.calledTwice
+  })
+
+})
