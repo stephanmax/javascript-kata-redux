@@ -1,6 +1,6 @@
 {
   "name": "javascript-kata-redux",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A JavaScript Kata for a Coding Dojo where you implement your own simple Redux store",
   "main": "store-facotry.js",
   "scripts": {

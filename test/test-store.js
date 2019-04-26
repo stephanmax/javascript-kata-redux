@@ -14,15 +14,15 @@ describe('The store', () => {
     this.store = storeFactory.createStore()
   })
 
-  it.skip('can be created', () => {
+  it('can be created', () => {
     expect(this.store).to.be.an('Object')
   })
 
-  it.skip('returns a state', () => {
+  it('returns a state', () => {
     expect(this.store.getState()).to.be.an('Object')
   })
 
-  it.skip('can dispatch actions', () => {
+  it('can dispatch actions', () => {
     expect(this.store.dispatch).to.be.a('Function')
   })
 
@@ -34,12 +34,12 @@ describe('With the store', () => {
     this.store = storeFactory.createStore()
   })
 
-  it.skip('we can store notes', () => {
+  it('we can store notes', () => {
     expect(this.store.getState()).to.have.a.property('notes')
     expect(this.store.getState().notes).to.be.an('Object')
   })
 
-  it.skip('we can create a note', () => {
+  it('we can create a note', () => {
     const content = 'Test note'
     
     this.store.dispatch({
@@ -51,7 +51,7 @@ describe('With the store', () => {
     expect(this.store.getState().notes[0].content).to.equal(content)
   })
 
-  it.skip('we can update a note', () => {
+  it('we can update a note', () => {
     const content = 'Updated test note'
 
     this.store.dispatch({
@@ -69,7 +69,7 @@ describe('With the store', () => {
     expect(this.store.getState().notes[0].content).to.equal(content)
   })
 
-  it.skip('we can delete a note', () => {
+  it('we can delete a note', () => {
     this.store.dispatch({
       type: actions.CREATE_NOTE
     })
@@ -95,7 +95,7 @@ describe('The state', () => {
     this.store = storeFactory.createStore()
   })
 
-  it.skip('is not altered if the action is unknown', () => {
+  it('is not altered if the action is unknown', () => {
     const state = this.store.getState()
 
     this.store.dispatch({
@@ -105,7 +105,7 @@ describe('The state', () => {
     expect(this.store.getState()).to.equal(state)
   })
 
-  it.skip('is immutable on CREATE_NOTE', () => {
+  it('is immutable on CREATE_NOTE', () => {
     const state = this.store.getState()
 
     this.store.dispatch({
@@ -115,7 +115,7 @@ describe('The state', () => {
     expect(this.store.getState()).not.to.equal(state)
   })
 
-  it.skip('is immutable on UPDATE_NOTE', () => {
+  it('is immutable on UPDATE_NOTE', () => {
     const stateBeforeCreate = this.store.getState()
 
     this.store.dispatch({
@@ -134,7 +134,7 @@ describe('The state', () => {
     expect(this.store.getState()).not.to.equal(stateBeforeUpdate)
   })
 
-  it.skip('is immutable on DELETE_NOTE', () => {
+  it('is immutable on DELETE_NOTE', () => {
     const stateBeforeCreate = this.store.getState()
 
     this.store.dispatch({
@@ -160,11 +160,11 @@ describe('Handlers', () => {
     this.store = storeFactory.createStore()
   })
 
-  it.skip('can subscribe to the store', () => {
+  it('can subscribe to the store', () => {
     expect(this.store.subscribe).to.be.a('Function')
   })
 
-  it.skip('that subscribed are called on dispatch', () => {
+  it('that subscribed are called on dispatch', () => {
     const handler = sinon.fake()
 
     this.store.subscribe(handler)
@@ -181,7 +181,7 @@ describe('Handlers', () => {
     expect(handler).to.have.been.calledTwice
   })
 
-  it.skip('can unsubscribe', () => {
+  it('can unsubscribe', () => {
     const handler = sinon.fake()
     const unsubscribe = this.store.subscribe(handler)
 
@@ -208,11 +208,11 @@ describe('Actions', () => {
     this.store = storeFactory.createStore()
   })
 
-  it.skip('must not be null', () => {
+  it('must not be null', () => {
     expect(this.store.dispatch).to.throw('Action must be an object')
   })
 
-  it.skip('must have a type', () => {
+  it('must have a type', () => {
     expect(() => this.store.dispatch({})).to.throw('Action must have a type')
   })
 
